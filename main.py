@@ -49,8 +49,8 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
 
         image = pipe(
             prompt,
-            width=width,
-            height=height,
+            width=width / 8,
+            height=height / 8,
             generator=generator,
             image=Image.open(fileName),
             num_inference_steps=numInferenceSteps
