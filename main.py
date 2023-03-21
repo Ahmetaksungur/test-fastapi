@@ -51,7 +51,7 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
             prompt,
             generator=generator,
             image=Image.open(fileName),
-            num_inference_steps=numInferenceSteps
+            num_inference_steps=50
         ).images[0]
 
         image.save(fileNameOutput)
