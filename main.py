@@ -58,4 +58,4 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
 
         image.save(fileNameOutput)
 
-    return {"success": bool(1), "message": f"Successfully {fileName}"}
+    return {"success": bool(1), "message": f"Successfully {fileNameOutput}"}
