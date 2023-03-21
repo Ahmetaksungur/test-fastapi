@@ -47,10 +47,16 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
         pipe.enable_attention_slicing()
         generator = torch.Generator(device="cuda").manual_seed(-1)
 
+        border_x = ((8-(width % 8) + 2*40))
+        border_y = ((8-(height % 8) + 2*40))
+
+        page_height = ((height + border_y))
+        page_width = ((width + border_x))
+
         image = pipe(
             prompt,
-            width=width / 8,
-            height=height / 8,
+            width=page_height,
+            height=page_width,
             generator=generator,
             image=Image.open(fileName),
             num_inference_steps=numInferenceSteps
