@@ -39,16 +39,24 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
         width, height = image.size
 
         controlnet = ControlNetModel.from_pretrained(
-            "lllyasviel/sd-controlnet-depth", torch_dtype=torch.float16)
+            "lllyasviel/sd-controlnet-depth",
+            torch_dtype=torch.float16
+        )
 
         pipe = StableDiffusionControlNetPipeline.from_pretrained(
-            "runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, controlnet=controlnet, safety_checker=None).to("cuda")
+            "runwayml/stable-diffusion-v1-5",
+            torch_dtype=torch.float16,
+            controlnet=controlnet,
+            safety_checker=None
+        ).to("cuda")
 
         pipe.enable_attention_slicing()
         generator = torch.Generator(device="cuda").manual_seed(-1)
 
         image = pipe(
             prompt,
+            width=1200,
+            height=600,
             generator=generator,
             image=Image.open(fileName),
             num_inference_steps=50
