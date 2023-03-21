@@ -35,8 +35,6 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
         return {"success": bool(0), "message": "There was an error uploading the file"}
     finally:
         file.file.close()
-        image = Image.open(fileName)
-        width, height = image.size
 
         controlnet = ControlNetModel.from_pretrained(
             "lllyasviel/sd-controlnet-depth",
@@ -55,8 +53,6 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
 
         image = pipe(
             prompt,
-            width=1200,
-            height=600,
             generator=generator,
             image=Image.open(fileName),
             num_inference_steps=50
