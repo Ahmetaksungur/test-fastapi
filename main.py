@@ -45,7 +45,7 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
             "runwayml/stable-diffusion-v1-5",
             torch_dtype=torch.float16,
             controlnet=controlnet,
-            safety_checker=None
+            # safety_checker=None
         ).to("cuda")
 
         pipe.enable_attention_slicing()
