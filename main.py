@@ -47,7 +47,6 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
             controlnet=controlnet
         )
 
-        pipe.enable_xformers_memory_efficient_attention()
         pipe.enable_attention_slicing()
         generator = torch.Generator(device="cuda").manual_seed(2)
 
@@ -55,7 +54,7 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
             prompt,
             generator=generator,
             image=Image.open(fileName),
-            num_inference_steps=20
+            num_inference_steps=50
         ).images[0]
 
         image.save(fileNameOutput)
