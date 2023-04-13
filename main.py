@@ -49,7 +49,7 @@ def upload(file: UploadFile = File(...), prompt: str = Form(), numInferenceSteps
         ).to("cuda")
 
         pipe.enable_attention_slicing()
-        generator = torch.Generator(device="cuda").manual_seed(-1)
+        generator = torch.Generator(device="cuda").manual_seed(-6)
 
         image = pipe(
             prompt,
