@@ -29,10 +29,11 @@ rotated_image = imrotate(img1, 30);
 imshow(rotated_image);
 ```
 
-
+```matlab
 img1=imread('test.jpg');
 size(img1);
 [a,b,c]=size(img1);
+```
 
 ## Resim Histogram
 
